@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block err %}
+
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <main role="main" class="inner cover">
+                <h1 class="cover-heading">
+                    
+                    {%- if error_code is defined -%}
+                    {{ error_code }}
+                    {%- else -%}
+                    Lỗi không xác định 
+                    {%- endif -%}
+                </h1>
+                <p class="lead">
+                    {% if error_message is defined -%}
+                    {{ error_message }}
+                    {%- else -%}
+                    Xin lỗi, đã xảy ra lỗi không mong muốn!
+                    {%- endif -%}
+                </p>
+                <p class="lead">
+                    <a href="{{ url_for('show_index') }}" class="btn btn-lg btn-secondary">
+                        <i class="fas fa-home"></i> Quay về trang chủ
+
+                    </a>
+                </p>
+            </main>
+
+            <footer class="mastfoot">
+                <div class="inner">
+                    <p>
+                        Developed with  <a href="https://www.python.org/" title="Ngôn ngữ lập trình Python" target="_blank"><i class="fab fa-python"></i></a>
+                        by
+                        <a href="https://www.linkedin.com/in/%C4%91%E1%BA%AFc-to%C3%A0n-nguy%E1%BB%85n-a94b2a146/" title="Developer" target="_blank">Nguyen_Dac_Toan_KMA</a> 2018
+                        </a>
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cover.css') }}">
+
+{% endblock %}
