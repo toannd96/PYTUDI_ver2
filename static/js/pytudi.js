@@ -25,6 +25,7 @@ $(document).ready(function () {
 		return $div;
 	}
 
+    
 	function search_word(){
 		$search_word_value = $("#search_word_text").val();
 		$search_word_value = $.trim($search_word_value);
@@ -55,6 +56,8 @@ $(document).ready(function () {
 
 		}
 	}
+
+
 
 	$("#search_btn").on("click", function () {
 		search_word();

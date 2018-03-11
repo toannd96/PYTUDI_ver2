@@ -8,7 +8,7 @@
     <meta name="description" content="Từ điển trực tuyến giúp bạn tra cứu nhanh chóng, chính xác từ hoặc cụm từ Anh - Việt , Việt -  Anh">
     <meta name="author" content="Nguyễn Đắc Toàn"> 
     <title>PYTUDI: Từ Điển Trực Tuyến Anh - Việt - Anh</title>
-    <link rel="icon" href="http://www.ceos-datapolicy.org/assets/media/icons/icn-dictionary.png" type="image/x-icon"/>
+   
     <link rel="icon" href="{{ url_for('static', filename='images/icn-dictionary.png') }}" type="image/x-icon"/>
     
     <link href="https://fonts.google.com/specimen/Saira+Condensed"
@@ -41,12 +41,32 @@
 <!-- Bootstrap -->
 <script type="text/javascript"
         src="{{ url_for('static', filename='plugins/bootstrap_4.0.0-alpha.6/js/bootstrap.min.js') }}"></script>
-<script type="text/javascript"
-        src="{{ url_for('static', filename='plugins/bootstrap_4.0.0-alpha.6/js/bootstrap.bundle.min.js') }}"></script>
+
 <!-- Custom -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/pytudi.js') }}"></script>
 <!--<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>-->
 <script src="{{ url_for('static', filename='js/fontawesome.js') }}"></script>
 <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+<script> 
+function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+    // for Internet Explorer 8 and below. For Blogger, you should use &amp;&amp; instead of &&.
+    } else if (document.selection && document.selection.type != "Control") { 
+        text = document.selection.createRange().text;
+    }
+    return text;
+}
+$(document).ready(function (){ // when the document has completed loading
+   $(document).mouseup(function (e){ // attach the mouseup event for all div and pre tags
+      setTimeout(function() { // When clicking on a highlighted area, the value stays highlighted until after the mouseup event, and would therefore stil be captured by getSelection. This micro-timeout solves the issue. 
+         responsiveVoice.cancel(); // stop anything currently being spoken
+         responsiveVoice.speak(getSelectionText()); //speak the text as returned by getSelectionText
+      }, 1);
+   });
+});
+</script>
 </body>
 </html>
