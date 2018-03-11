@@ -9,7 +9,7 @@ app = Flask(__name__)
 def fetch_word():
     if request.method == "POST":
         word = request.form.get("word")
-        if all(ord(char) < 128 for char in word) is True:
+        if all(ord(char) < 128 for char in word):
             url = 'https://api.tracau.vn/WBBcwnwQpV89/s/'+word+'/en'
             r = requests.get(url)
             data = r.json()
@@ -26,7 +26,7 @@ def fetch_word():
             data = r.json()
             items = data['tratu']
             for i in items:
-                    return (i['fields']['fulltext']) 
+                return (i['fields']['fulltext']) 
             else:
                 return "<b class='title_case'></b> Không tìm thấy từ mà bạn yêu cầu"
             return redirect(url_for('show_index'))
