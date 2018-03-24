@@ -1,4 +1,6 @@
-import json, os, re
+import json
+import os
+import re
 from flask import Flask, render_template, request, url_for, redirect
 import requests
 
@@ -10,7 +12,7 @@ def fetch_word():
     if request.method == "POST":
         word = request.form.get("word")
         if all(ord(char) < 128 for char in word):
-            url = 'https://api.tracau.vn/WBBcwnwQpV89/s/'+word+'/en'
+            url = 'https://api.tracau.vn/WBBcwnwQpV89/s/' + word + '/en'
             r = requests.get(url)
             data = r.json()
             items = data['tratu']
@@ -21,7 +23,7 @@ def fetch_word():
             return redirect(url_for('show_index'))
             
         else:
-            url = 'https://api.tracau.vn/WBBcwnwQpV89/s/'+word+'/vi'
+            url = 'https://api.tracau.vn/WBBcwnwQpV89/s/' + word + '/vi'
             r = requests.get(url)
             data = r.json()
             items = data['tratu']
