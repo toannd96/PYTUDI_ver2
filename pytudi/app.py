@@ -4,11 +4,11 @@ import re
 from flask import Flask, render_template, request, url_for, redirect
 import requests
 
+app = Flask(__name__)
 
 def create_app():
-    app = Flask(__name__)
+    
     @app.route('/words', methods=['GET','POST'])
-
     def fetch_word():
         if request.method == "POST":
             word = request.form.get("word")
@@ -76,4 +76,4 @@ def create_app():
 application = create_app()
     
 if __name__ == '__main__':
-    application.run()
+    application.run(port=os.getenv("PORT"))
